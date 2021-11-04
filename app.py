@@ -14,21 +14,16 @@ class MainWindow(tk.Tk):
         self.resizable(False, False)
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(0, weight=1)
-        #self.mainframe = ff.MainFrame(self)
+        self.mainframe = ff.MainFrame(self).pack(side='top')
         self.switching_frames()
 
     def switching_frames(self):
         self.frames: Dict[str, ff.AbstractBaseFrame] = {}
         for frame_item in (ff.MainFrame, ff.AuthSignInFrame, ff.AuthSignUpFrame):
             frame_name = frame_item.__name__
-            frame = frame_item(self)
+            frame = frame_item(self.mainframe)
             self.frames[frame_name] = frame
 
-        self.show_frame()
-    
-    def show_frame(self):
-        frame = self.frames.get('MainFrame')
-        frame.tkraise()
 
 if __name__ == '__main__':
     mw = MainWindow(title='Password Manager', screen_size=ScreenSize(width=350, height=550))
