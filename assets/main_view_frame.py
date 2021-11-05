@@ -9,6 +9,10 @@ class MainViewFrame(tk.Frame):
     def __init__(self, *args, **kwargs) -> None:
         tk.Frame.__init__(self, *args, **kwargs)
 
+        self.pack(side='top', fill='both', expand=True)
+        self.grid_rowconfigure(0, weight=1)
+        self.grid_columnconfigure(0, weight=1)
+
         self.pages_view: Dict[str, pf.BasePageInterface] = dict()
         for page_item in (pf.HomePageView, pf.SingInPageView, pf.SingUpPageView):
             page_name = page_item.__name__
