@@ -1,5 +1,5 @@
 import tkinter as tk
-import assets.main_view_frame as mv
+import assets.manager_pages as mp
 from typing import NamedTuple
 
 
@@ -18,5 +18,5 @@ class GeneralWindow(tk.Tk):
         self.geometry(f"{size.width}x{size.height}")
         self.resizable(False, False)
 
-        self.mainview = mv.MainViewFrame(self)
+        self.mainview = mp.ManagerPagesView(self)
         self.mainview.pack(side='top', fill='both', expand=True)

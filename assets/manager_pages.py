@@ -3,7 +3,7 @@ import assets.pages_factory as pf
 from typing import Dict
 
 
-class MainViewFrame(tk.Frame):
+class ManagerPagesView(tk.Frame):
     """ This is main frame which contains all frames(pages) """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -14,7 +14,7 @@ class MainViewFrame(tk.Frame):
         self.grid_columnconfigure(0, weight=1)
 
         self.pages_view: Dict[str, pf.BasePageInterface] = dict()
-        for page_item in (pf.HomePageView, pf.SingInPageView, pf.SingUpPageView):
+        for page_item in (pf.HomePageView, pf.SignInPageView, pf.SignUpPageView):
             page_name = page_item.__name__
             page = page_item(mainframe=self)
             self.pages_view[page_name] = page

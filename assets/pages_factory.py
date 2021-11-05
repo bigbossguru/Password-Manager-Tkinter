@@ -1,5 +1,5 @@
 import tkinter as tk
-
+import assets.login_form as login
 
 class BasePageInterface(tk.Frame):
     """ This is base page Interface for all frames(pages) """
@@ -17,13 +17,13 @@ class HomePageView(BasePageInterface):
         home_label = tk.Label(self, text='Password Manager', font=('Helvetica', 15))
         home_label.pack(side='top', fill='both', expand=True)
 
-        sing_in_btn = tk.Button(self, text='Sing in', command=lambda: mainframe.page_show('SingInPageView'))
-        sing_up_btn = tk.Button(self, text='Sing up', command=lambda: mainframe.page_show('SingUpPageView'))
+        sing_in_btn = tk.Button(self, text='Sign in', command=lambda: mainframe.page_show('SignInPageView'))
+        sing_up_btn = tk.Button(self, text='Sign up', command=lambda: mainframe.page_show('SignUpPageView'))
         sing_in_btn.pack(side='top', fill='both', padx=5, pady=5)
         sing_up_btn.pack(side='top', fill='both', padx=5, pady=5)
 
 
-class SingInPageView(BasePageInterface):
+class SignInPageView(BasePageInterface):
     """ This is Sing In page which provides authentication user"""
 
     def __init__(self, mainframe, *args, **kwargs) -> None:
@@ -31,11 +31,14 @@ class SingInPageView(BasePageInterface):
 
         home_btn = tk.Button(self, text='Home', command=lambda: mainframe.page_show('HomePageView'))
         home_btn.pack(side='top', fill='both', padx=5, pady=5)
-        sing_in_label = tk.Label(self, text='Sing in page', font=('Helvetica', 15))
-        sing_in_label.pack(side='top', fill='both', expand=True)
+        sign_in_label = tk.Label(self, text='Sign in page', font=('Helvetica', 15))
+        sign_in_label.pack(side='top', fill='both', pady=100)
+
+        login_form = login.LoginForm(mainframe=self)
+        login_form.pack(side='top')
 
 
-class SingUpPageView(BasePageInterface):
+class SignUpPageView(BasePageInterface):
     """ This is Sing Up page which provides registration user"""
 
     def __init__(self, mainframe, *args, **kwargs) -> None:
@@ -43,6 +46,6 @@ class SingUpPageView(BasePageInterface):
 
         home_btn = tk.Button(self, text='Home', command=lambda: mainframe.page_show('HomePageView'))
         home_btn.pack(side='top', fill='both', padx=5, pady=5)
-        sing_up_label = tk.Label(self, text='Sing up page', font=('Helvetica', 15))
-        sing_up_label.pack(side='top', fill='both', expand=True)
+        sign_up_label = tk.Label(self, text='Sign up page', font=('Helvetica', 15))
+        sign_up_label.pack(side='top', fill='both', expand=True)
         
