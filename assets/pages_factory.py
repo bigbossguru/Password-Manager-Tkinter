@@ -1,5 +1,6 @@
 import tkinter as tk
 import assets.login_form as login
+import assets.registration_form as registration
 
 class BasePageInterface(tk.Frame):
     """ This is base page Interface for all frames(pages) """
@@ -31,8 +32,8 @@ class SignInPageView(BasePageInterface):
 
         home_btn = tk.Button(self, text='Home', command=lambda: mainframe.page_show('HomePageView'))
         home_btn.pack(side='top', fill='both', padx=5, pady=5)
-        sign_in_label = tk.Label(self, text='Sign in page', font=('Helvetica', 15))
-        sign_in_label.pack(side='top', fill='both', pady=100)
+        sign_in_label = tk.Label(self, text='Sign in page'.upper(), font=('Helvetica', 15))
+        sign_in_label.pack(side='top', fill='both', pady=50)
 
         login_form = login.LoginForm(mainframe=self)
         login_form.pack(side='top')
@@ -46,6 +47,9 @@ class SignUpPageView(BasePageInterface):
 
         home_btn = tk.Button(self, text='Home', command=lambda: mainframe.page_show('HomePageView'))
         home_btn.pack(side='top', fill='both', padx=5, pady=5)
-        sign_up_label = tk.Label(self, text='Sign up page', font=('Helvetica', 15))
-        sign_up_label.pack(side='top', fill='both', expand=True)
+        sign_up_label = tk.Label(self, text='Sign up page'.upper(), font=('Helvetica', 15))
+        sign_up_label.pack(side='top', fill='both', pady=50)
+
+        registration_form = registration.RegistrationForm(mainframe=self)
+        registration_form.pack(side='top')
         

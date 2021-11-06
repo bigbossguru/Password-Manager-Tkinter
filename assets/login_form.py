@@ -11,9 +11,10 @@ class LoginForm(tk.Frame):
         self.username = tk.StringVar()
         self.password = tk.StringVar()
 
+        login_label = tk.Label(mainframe, text='Login', font=('Helvetica', 15)).pack(side='top', fill='both', pady=30)
 
-        login_label = tk.Label(mainframe, text='Username').pack(side='top')
-        login_input = tk.Entry(mainframe, width=30, textvariable=self.username).pack(side='top')
+        username_label = tk.Label(mainframe, text='Username').pack(side='top')
+        username_input = tk.Entry(mainframe, width=30, textvariable=self.username).pack(side='top')
 
 
         passwd_label = tk.Label(mainframe, text='Password').pack(side='top')
