@@ -14,9 +14,9 @@ class ManagerPagesView(tk.Frame):
         self.grid_columnconfigure(0, weight=1)
 
         self.pages_view: Dict[str, pf.BasePageInterface] = dict()
-        for page_item in (pf.HomePageView, pf.SignInPageView, pf.SignUpPageView):
+        for page_item in (pf.HomePageView, pf.SignInPageView, pf.SignUpPageView, pf.AccountPageView):
             page_name = page_item.__name__
-            page = page_item(mainframe=self)
+            page = page_item(master=self)
             self.pages_view[page_name] = page
             page.grid(row=0, column=0, sticky='nsew')
         
@@ -24,4 +24,5 @@ class ManagerPagesView(tk.Frame):
 
     def page_show(self, page_name: str) -> None:
         page = self.pages_view.get(page_name)
-        page.tkraise()
+        if page.access:
+            page.tkraise()
