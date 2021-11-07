@@ -81,3 +81,11 @@ class AccountPageView(BasePageInterface):
         account_label = tk.Label(self, text='Account'.upper(), font=('Helvetica', 15))
         account_label.pack(side='top', fill='both', pady=50)
         
+        table = ttk.Treeview(self, columns=('id','username','password'), show='headings')
+        table.heading('#1', text='ID')
+        table.column('#1', width=10)
+        table.heading('#2', text='Username')
+        table.column('#2', width=50)
+        table.heading('#3', text='Password')
+        table.column('#3', width=50)
+        table.pack(fill='x', padx=10)

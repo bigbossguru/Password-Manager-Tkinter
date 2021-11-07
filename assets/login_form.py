@@ -1,4 +1,5 @@
 import tkinter as tk
+import assets.data_base_connector as db
 
 
 class LoginForm(tk.Frame):
@@ -23,6 +24,8 @@ class LoginForm(tk.Frame):
     def clicked(self):
         if self.username.get() and self.password.get():
             print(f"Login\nusername: {self.username.get()}\npassword: {self.password.get()}\n{'-'*30}\n")
+            with db.DataBaseConnector('registration_user') as db_log:
+                pass
             self.controller.page_show('AccountPageView')
             self.username.delete(0, tk.END)
             self.password.delete(0, tk.END)
