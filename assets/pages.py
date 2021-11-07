@@ -1,7 +1,12 @@
+import pathlib
 import tkinter as tk
 import tkinter.ttk as ttk
 import assets.login_form as login
 import assets.registration_form as registration
+from PIL import ImageTk, Image
+
+ROOT_PATH = pathlib.Path().absolute()
+MEDIA_PATH = ROOT_PATH.joinpath('media')
 
 class BasePageInterface(tk.Frame):
     """ This is base page Interface for all frames(pages) """
@@ -20,7 +25,10 @@ class HomePageView(BasePageInterface):
         home_label = tk.Label(self, text='Password Manager'.upper(), font=('Helvetica', 15))
         home_label.pack(side='top', fill='both', expand=True)
 
-        logo = tk.PhotoImage(file='')
+        # I don't know how it works
+        # logo = ImageTk.PhotoImage(Image.open(MEDIA_PATH.joinpath('passwd.png')))
+        # show_logo = tk.Label(self, image=logo)
+        # show_logo.pack(fill='both', expand=True)
 
         sing_in_btn = ttk.Button(self, text='Sign in', command=lambda: master.page_show('SignInPageView'))
         sing_up_btn = ttk.Button(self, text='Sign up', command=lambda: master.page_show('SignUpPageView'))

@@ -1,5 +1,5 @@
 import tkinter as tk
-import assets.pages_factory as pf
+import assets.pages as pf
 from typing import Dict
 
 
