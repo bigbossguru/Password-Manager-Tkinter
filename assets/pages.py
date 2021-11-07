@@ -1,4 +1,5 @@
 import tkinter as tk
+import tkinter.ttk as ttk
 import assets.login_form as login
 import assets.registration_form as registration
 
@@ -19,8 +20,10 @@ class HomePageView(BasePageInterface):
         home_label = tk.Label(self, text='Password Manager'.upper(), font=('Helvetica', 15))
         home_label.pack(side='top', fill='both', expand=True)
 
-        sing_in_btn = tk.Button(self, text='Sign in', command=lambda: master.page_show('SignInPageView'))
-        sing_up_btn = tk.Button(self, text='Sign up', command=lambda: master.page_show('SignUpPageView'))
+        logo = tk.PhotoImage(file='')
+
+        sing_in_btn = ttk.Button(self, text='Sign in', command=lambda: master.page_show('SignInPageView'))
+        sing_up_btn = ttk.Button(self, text='Sign up', command=lambda: master.page_show('SignUpPageView'))
         sing_in_btn.pack(side='top', fill='both', padx=5, pady=5)
         sing_up_btn.pack(side='top', fill='both', padx=5, pady=5)
 
@@ -32,7 +35,7 @@ class SignInPageView(BasePageInterface):
         BasePageInterface.__init__(self, master, *args, **kwargs)
         self.access = True
 
-        home_btn = tk.Button(self, text='Home', command=lambda: master.page_show('HomePageView'))
+        home_btn = ttk.Button(self, text='Home', command=lambda: master.page_show('HomePageView'))
         home_btn.pack(side='top', fill='both', padx=5, pady=5)
         sign_in_label = tk.Label(self, text='Sign in page'.upper(), font=('Helvetica', 15))
         sign_in_label.pack(side='top', fill='both', pady=50)
@@ -48,7 +51,7 @@ class SignUpPageView(BasePageInterface):
         BasePageInterface.__init__(self, master, *args, **kwargs)
         self.access = True
 
-        home_btn = tk.Button(self, text='Home', command=lambda: master.page_show('HomePageView'))
+        home_btn = ttk.Button(self, text='Home', command=lambda: master.page_show('HomePageView'))
         home_btn.pack(side='top', fill='both', padx=5, pady=5)
         sign_up_label = tk.Label(self, text='Sign up page'.upper(), font=('Helvetica', 15))
         sign_up_label.pack(side='top', fill='both', pady=50)
@@ -64,7 +67,7 @@ class AccountPageView(BasePageInterface):
         BasePageInterface.__init__(self, master, *args, **kwargs)
         self.access = True
 
-        logout_btn = tk.Button(self, text='Logout', command=lambda: master.page_show('HomePageView'))
+        logout_btn = ttk.Button(self, text='Logout', command=lambda: master.page_show('HomePageView'))
         logout_btn.pack(side='top', fill='both', padx=5, pady=5)
 
         account_label = tk.Label(self, text='Account'.upper(), font=('Helvetica', 15))
