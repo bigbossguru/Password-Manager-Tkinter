@@ -1,6 +1,6 @@
 import sqlite3
 import pathlib
-from typing import List
+
 
 class DataBaseConnector:
     """ Connector provide connect between database and inteface """
@@ -22,8 +22,10 @@ class DataBaseConnector:
         self.cur.execute(contain, *args)
         self.conn.commit()
 
-    def fetch_info(self) -> List:
-        pass
+    def fetch_info(self, table: str) -> list:
+        self.cur.execute(f"SELECT * FROM {table}")
+        rows = self.cur.fetchall()
+        return rows
 
     def __exit__(self, *args):
         self.conn.close()

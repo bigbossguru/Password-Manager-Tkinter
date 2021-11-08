@@ -1,8 +1,10 @@
 import pathlib
+import sqlite3
 import tkinter as tk
 import tkinter.ttk as ttk
 import assets.login_form as login
 import assets.registration_form as registration
+import assets.data_base_connector as db
 from PIL import ImageTk, Image
 
 ROOT_PATH = pathlib.Path().absolute()
@@ -48,8 +50,8 @@ class SignInPageView(BasePageInterface):
         sign_in_label = tk.Label(self, text='Sign in page'.upper(), font=('Helvetica', 15))
         sign_in_label.pack(side='top', fill='both', pady=50)
 
-        login_form = login.LoginForm(mainframe=self, controller=master)
-        login_form.pack(side='top')
+        self.login_form = login.LoginForm(mainframe=self, controller=master)
+        self.login_form.pack(side='top')
 
 
 class SignUpPageView(BasePageInterface):
@@ -64,8 +66,8 @@ class SignUpPageView(BasePageInterface):
         sign_up_label = tk.Label(self, text='Sign up page'.upper(), font=('Helvetica', 15))
         sign_up_label.pack(side='top', fill='both', pady=50)
 
-        registration_form = registration.RegistrationForm(mainframe=self, controller=master)
-        registration_form.pack(side='top')
+        self.registration_form = registration.RegistrationForm(mainframe=self, controller=master)
+        self.registration_form.pack(side='top')
 
 
 class AccountPageView(BasePageInterface):
@@ -81,11 +83,24 @@ class AccountPageView(BasePageInterface):
         account_label = tk.Label(self, text='Account'.upper(), font=('Helvetica', 15))
         account_label.pack(side='top', fill='both', pady=50)
         
-        table = ttk.Treeview(self, columns=('id','username','password'), show='headings')
-        table.heading('#1', text='ID')
-        table.column('#1', width=10)
-        table.heading('#2', text='Username')
-        table.column('#2', width=50)
-        table.heading('#3', text='Password')
-        table.column('#3', width=50)
-        table.pack(fill='x', padx=10)
+        self.table = ttk.Treeview(self, columns=('id','username','password'), show='headings')
+        self.table.heading('#1', text='ID')
+        self.table.column('#1', width=10)
+        self.table.heading('#2', text='Username')
+        self.table.column('#2', width=50)
+        self.table.heading('#3', text='Password')
+        self.table.column('#3', width=50)
+
+    def fill_info_from_db(self) -> None:
+        rows = None
+        try:
+            with db.DataBaseConnector('user_data.db') as db_info:
+                rows = db_info.fetch_info(f"{self.master.last_username}")
+        except sqlite3.OperationalError:
+            pass
+        
+        if rows:
+            for row in rows:
+                self.table.insert("", tk.END, values=row)
+
+        self.table.pack(fill='x', padx=10)

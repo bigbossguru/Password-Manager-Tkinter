@@ -9,6 +9,7 @@ class ManagerPagesView(tk.Frame):
     def __init__(self, *args, **kwargs) -> None:
         tk.Frame.__init__(self, *args, **kwargs)
 
+        self.last_username = ''
         self.pack(side='top', fill='both', expand=True)
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(0, weight=1)
@@ -24,5 +25,11 @@ class ManagerPagesView(tk.Frame):
 
     def page_show(self, page_name: str) -> None:
         page = self.pages_view.get(page_name)
+        if page_name == 'AccountPageView':
+            page.fill_info_from_db()
         if page.access:
             page.tkraise()
+    
+    def set_last_username(self, username: str) -> None:
+        self.last_username = username
+
