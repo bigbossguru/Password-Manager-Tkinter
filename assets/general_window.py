@@ -1,5 +1,6 @@
 import tkinter as tk
 import assets.manager_pages as mp
+from assets.pages import MEDIA_PATH
 from typing import NamedTuple
 
 
@@ -16,6 +17,7 @@ class GeneralWindow(tk.Tk):
 
         self.title(title)
         self.geometry(f"{size.width}x{size.height}")
+        self.iconbitmap(MEDIA_PATH.joinpath('lock.ico'))
         self.resizable(False, False)
 
         self.mainview = mp.ManagerPagesView(self)

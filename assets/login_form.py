@@ -1,4 +1,5 @@
 import tkinter as tk
+import tkinter.ttk as ttk
 import assets.data_base_connector as db
 
 
@@ -20,7 +21,7 @@ class LoginForm(tk.Frame):
         self.password = tk.Entry(mainframe, width=30, show='*')
         self.password.pack()
 
-        tk.Button(self, text='Login', command=self.clicked).pack(side='top', pady=10)
+        ttk.Button(self, text='Login', command=self.clicked).pack(side='top', pady=10)
 
         self.lbl_passwd_err = tk.Label(mainframe, text='Password error')
         self.lbl_notexist_user = tk.Label(mainframe, text="Does not exist user")

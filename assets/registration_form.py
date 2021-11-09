@@ -1,5 +1,6 @@
 import sqlite3
 import tkinter as tk
+import tkinter.ttk as ttk
 import assets.data_base_connector as db
 
 
@@ -25,7 +26,7 @@ class RegistrationForm(tk.Frame):
         self.password = tk.Entry(mainframe, width=30, show='*')
         self.password.pack()
 
-        tk.Button(self, text='Submit', command=self.clicked).pack(side='top', pady=10)
+        ttk.Button(self, text='Submit', command=self.clicked).pack(side='top', pady=10)
 
         self.lbl_exist_user = tk.Label(mainframe, text='User already exist')
     
