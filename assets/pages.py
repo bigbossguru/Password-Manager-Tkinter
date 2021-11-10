@@ -83,13 +83,13 @@ class AccountPageView(BasePageInterface):
         account_label = tk.Label(self, text='Account'.upper(), font=('Helvetica', 15, 'bold'))
         account_label.pack(fill='x', pady=30)
         
-        self.table = ttk.Treeview(self, columns=('id','username','password'), show='headings')
-        self.table.heading('#1', text='ID')
-        self.table.column('#1', width=10)
-        self.table.heading('#2', text='Username')
+        self.table = ttk.Treeview(self, columns=('id','username','password'), show='headings', height=15)
+        self.table.heading('#0', text='ID')
+        self.table.column('#0', width=10)
+        self.table.heading('#1', text='Username')
+        self.table.column('#1', width=50)
+        self.table.heading('#2', text='Password')
         self.table.column('#2', width=50)
-        self.table.heading('#3', text='Password')
-        self.table.column('#3', width=50)
 
         input_frame = tk.Frame(self)
         # input_frame.columnconfigure(0, weight=1)
@@ -118,6 +118,10 @@ class AccountPageView(BasePageInterface):
         except sqlite3.OperationalError:
             pass
         
+        # clear treeview items
+        for i in self.table.get_children():
+            self.table.delete(i)
+
         if rows:
             for row in rows:
                 self.table.insert("", tk.END, values=row)
@@ -129,9 +133,9 @@ class AccountPageView(BasePageInterface):
             with db.DataBaseConnector('user_data.db') as db_add:
                 db_add.insert_data(f""" INSERT INTO {self.master.last_username}(username, password) VALUES(?,?)""", (self.entry_username.get(), self.entry_passwd.get()))
 
-            self.fill_info_from_db()
-
         self.entry_username.delete(0, tk.END)
         self.entry_passwd.delete(0, tk.END)
+
+        self.fill_info_from_db()
 
 
