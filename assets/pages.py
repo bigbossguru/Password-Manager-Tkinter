@@ -27,7 +27,7 @@ class HomePageView(BasePageInterface):
         home_label = tk.Label(self, text='Password Manager'.upper(), font=('Helvetica', 15, 'bold'))
         home_label.pack(side='top', fill='both', expand=True)
 
-        # I don't know how it works
+        # Logo in home page
         image1 = Image.open(MEDIA_PATH.joinpath('passwd.png'))
         image1 = image1.resize((194, 115), Image.ANTIALIAS)
         logo = ImageTk.PhotoImage(image1)
@@ -84,12 +84,12 @@ class AccountPageView(BasePageInterface):
         account_label.pack(fill='x', pady=30)
         
         self.table = ttk.Treeview(self, columns=('id','username','password'), show='headings', height=15)
-        self.table.heading('#0', text='ID')
-        self.table.column('#0', width=10)
-        self.table.heading('#1', text='Username')
-        self.table.column('#1', width=50)
-        self.table.heading('#2', text='Password')
+        self.table.heading('#1', text='ID')
+        self.table.column('#1', width=10)
+        self.table.heading('#2', text='Username')
         self.table.column('#2', width=50)
+        self.table.heading('#3', text='Password')
+        self.table.column('#3', width=50)
 
         input_frame = tk.Frame(self)
         # input_frame.columnconfigure(0, weight=1)
